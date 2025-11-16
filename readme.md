@@ -1,63 +1,55 @@
 ProgramimiMeSocketsTCP is a Java-based TCP client/server project.
 It implements a multi-threaded file server and a console client capable of sending commands, browsing directories, reading files, and transferring data over a TCP connection.
 
-Features
+-- FEATURES --
 
-Client
+Client:
 
-Connect as user or admin
+- Connect as user or admin
 
-Console-based interaction
+- Console-based interaction
 
-List directories and files
+- List directories and files
 
-Read text files
+- Read text files
 
-Search for keywords
+- Search for keywords
 
-View file metadata
+- View file metadata
 
-Download files (Base64)
+- Download files (Base64)
 
-Upload files (admin only)
+- Upload files (admin only)
 
-Delete files (admin only)
+- Delete files (admin only)
 
-Graceful connection and termination handling
+- Graceful connection and termination handling
 
-Server
 
-Multi-threaded TCP server
+Server:
 
-Supports up to 4 concurrent clients
+- Multi-threaded TCP server
 
-Admin token authorization
+- Supports up to 4 concurrent clients
 
-Safe path resolution and validation
+- Admin token authorization
 
-Command parsing and execution
+- Safe path resolution and validation
 
-Base64 file transfer support
+- Command parsing and execution
 
-Automatic server statistics logging
+- Base64 file transfer support
 
-Per-client byte and message tracking
+- Automatic server statistics logging
 
-Project Structure
-ProgramimiMeSocketsTCP/
-│
-├── client/
-│   ├── ClientMain.java        # Client entry point
-│   ├── ConsoleClient.java     # Interactive console client
-│   ├── Util.java              # Client-side utilities
-│   ├── FileIO.java            # File operations & Base64 handling
-│
-├── server/
-│   ├── ServerMain.java        # Server entry point
-│   ├── ClientHandler.java     # Handles individual client sessions
-│   ├── CommandProcessor.java  # Core command logic
-│   ├── Stats.java             # Server statistics manager
-│   ├── Util.java              # Server-side utilities
+- Per-client byte and message tracking
+
+Project Structure:
+
+
+<img width="683" height="350" alt="image" src="https://github.com/user-attachments/assets/36327036-f842-4dfe-a1f4-862e4839041f" />
+
+
 
 ## Contributors
 
