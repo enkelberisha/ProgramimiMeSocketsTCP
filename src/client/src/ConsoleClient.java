@@ -26,27 +26,29 @@ public class ConsoleClient {
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
                 BufferedReader kb = new BufferedReader(new InputStreamReader(System.in))) {
 
-            // Read welcome (or busy message)
             String firstReply = readResponseWithResult(in);
 
+<<<<<<< Updated upstream
             // If server is busy, exit immediately
             if (firstReply.startsWith("ERR Serveri është i zënë")) {
                 System.out.println("Lidhja u mbyll: " + firstReply);
+=======
+            if (firstReply.startsWith("ERR Server busy")) {
+                System.out.println("Lidhja u ndërpre: Serveri është i zënë.");
+>>>>>>> Stashed changes
                 return;
             }
 
-            // Send role
             if ("admin".equalsIgnoreCase(role)) {
                 Util.writeln(out, "ROLE admin " + token);
             } else {
                 Util.writeln(out, "ROLE user");
             }
 
-            // Read role reply
             firstReply = readResponseWithResult(in);
 
-            // If server refused again, exit
             if (firstReply.startsWith("ERR")) {
+<<<<<<< Updated upstream
                 System.out.println("Lidhja u mbyll: " + firstReply);
                 return;
             }
@@ -54,52 +56,90 @@ public class ConsoleClient {
             // ✅ Only show commands if connection is good
             System.out.println(
                     "Shkruani komandat (/list, /read f, /upload f, /download f, /delete f, /search kw, /info f, /quit)");
+=======
+                System.out.println("Lidhja u ndërpre: " + firstReply);
+                return;
+            }
+
+            System.out.println("Shkruaj komandat (/list, /read f, /upload f, /download f, /delete f, /search kw, /info f, /quit)");
+>>>>>>> Stashed changes
 
             String line;
             while ((line = kb.readLine()) != null) {
+
+
                 if (line.startsWith("/upload ")) {
                     String localPath = line.substring(8).trim();
                     Path localFile = Paths.get(localPath);
                     if (!Files.exists(localFile)) {
+<<<<<<< Updated upstream
                         System.out.println("Fajlli lokal nuk u gjet: " + localFile);
+=======
+                        System.out.println("Gabim: Skedari lokal nuk u gjet → " + localFile);
+>>>>>>> Stashed changes
                         continue;
                     }
 
-                    // Just send the file name (not full path) to server
                     String fileNameOnly = localFile.getFileName().toString();
 
                     Util.writeln(out, "/upload " + fileNameOnly);
-                    readResponse(in); // expect OK READY
+                    readResponse(in);
 
                     byte[] data = Files.readAllBytes(localFile);
                     String b64 = Base64.getEncoder().encodeToString(data);
                     Util.writeln(out, b64);
                     readResponse(in);
-                } else if (line.startsWith("/download ")) {
+
+                }
+
+
+                else if (line.startsWith("/download ")) {
                     Util.writeln(out, line);
+
                     String header = in.readLine();
                     if (header == null || !header.startsWith("OK SIZE ")) {
                         drain(in, header);
                         continue;
                     }
+
                     int size = Integer.parseInt(header.substring(8).trim());
                     String b64 = in.readLine();
                     byte[] data = Base64.getDecoder().decode(b64);
-                    readResponse(in); // read "."
+
+                    readResponse(in);
+
                     String fname = line.substring(10).trim();
                     Files.write(Paths.get(fname), data);
+<<<<<<< Updated upstream
                     System.out.println("Shkarkuar " + fname + " (" + size + " bytes)");
                 } else {
                     Util.writeln(out, line);
                     readResponse(in);
                     if ("/quit".equalsIgnoreCase(line))
                         break;
+=======
+
+                    System.out.println("U shkarkua skedari " + fname + " (" + size + " bajta)");
+
+                }
+
+
+                else {
+                    Util.writeln(out, line);
+                    readResponse(in);
+
+                    if ("/quit".equalsIgnoreCase(line)) {
+                        System.out.println("U shkëpute nga serveri.");
+                        break;
+                    }
+>>>>>>> Stashed changes
                 }
             }
         }
     }
 
-    // Normal response reader
+
+
     private static void readResponse(BufferedReader in) throws IOException {
         String s;
         while ((s = in.readLine()) != null) {
@@ -109,7 +149,7 @@ public class ConsoleClient {
         }
     }
 
-    // Same as above, but also returns the first line
+
     private static String readResponseWithResult(BufferedReader in) throws IOException {
         String firstLine = null;
         String line;
@@ -122,6 +162,7 @@ public class ConsoleClient {
         }
         return firstLine == null ? "" : firstLine;
     }
+
 
     private static void drain(BufferedReader in, String first) throws IOException {
         if (first != null)

@@ -80,7 +80,7 @@ public class CommandProcessor {
             return;
         }
 
-        // Always force file to be inside server's root
+
         Path f = root.resolve(Paths.get(name).getFileName()).normalize();
 
         Util.writeln(out, "OK READY");

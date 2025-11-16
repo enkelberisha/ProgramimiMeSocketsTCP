@@ -1,0 +1,13 @@
+cd "C:\Users\enkel\Desktop\Viti 3.0\rrjeta\projekti\src\client\src"
+java ClientMain.java 0.0.0.0 9090 user
+
+
+
+javac *.java
+
+
+cd "C:\Users\enkel\Desktop\Viti 3.0\rrjeta\projekti\src\server\src"
+java ServerMain.java
+
+
+ipconfig

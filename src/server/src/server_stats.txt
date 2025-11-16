@@ -1,0 +1,13 @@
+=== Statistikat e Serverit @ 2025-11-16T22:52:28.826304Z ===
+Koneksionet aktive: 0
+Klientë aktivë/të parë: 8
+Totali i bajtëve HYRËS: 236
+Totali i bajtëve DALËS: 236
+Mesazhe për klient:
+  10.180.60.138:60818 -> 1
+  10.180.60.138:56292 -> 1
+  10.180.60.138:53652 -> 2
+  10.180.60.138:55204 -> 1
+  10.180.60.138:54184 -> 3
+  10.180.60.138:56289 -> 6
+  10.180.60.138:54808 -> 1

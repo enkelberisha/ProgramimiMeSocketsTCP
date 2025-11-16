@@ -34,7 +34,7 @@ public class ClientHandler implements Runnable {
             Util.writeln(out, "Mireserdhet në FileServer");
             Util.writeln(out, ".");
             String first = in.readLine();
-            if (first == null || !first.startsWith("Role")) {
+            if (first == null    || !first.startsWith("ROLE")) {
                 Util.replyErr(out, "Rreshti i parë duhet të jetë ROLE <admin|user> [token]");
                 close();
                 return;
