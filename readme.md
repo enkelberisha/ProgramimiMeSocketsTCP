@@ -34,11 +34,11 @@ Server:
 
 - Admin token authorization
 
--Safe path resolution and validation
+- Safe path resolution and validation
 
--Command parsing and execution
+- Command parsing and execution
 
--Base64 file transfer support
+- Base64 file transfer support
 
 - Automatic server statistics logging
 
