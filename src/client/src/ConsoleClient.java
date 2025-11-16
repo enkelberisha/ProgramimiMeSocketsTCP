@@ -22,16 +22,16 @@ public class ConsoleClient {
 
     public void run() throws Exception {
         try (Socket sock = new Socket(host, port);
-             BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
-             BufferedReader kb = new BufferedReader(new InputStreamReader(System.in))) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
+                BufferedReader kb = new BufferedReader(new InputStreamReader(System.in))) {
 
             // Read welcome (or busy message)
             String firstReply = readResponseWithResult(in);
 
             // If server is busy, exit immediately
-            if (firstReply.startsWith("ERR Server busy")) {
-                System.out.println("Disconnected: " + firstReply);
+            if (firstReply.startsWith("ERR Serveri është i zënë")) {
+                System.out.println("Lidhja u mbyll: " + firstReply);
                 return;
             }
 
@@ -47,12 +47,13 @@ public class ConsoleClient {
 
             // If server refused again, exit
             if (firstReply.startsWith("ERR")) {
-                System.out.println("Disconnected: " + firstReply);
+                System.out.println("Lidhja u mbyll: " + firstReply);
                 return;
             }
 
             // ✅ Only show commands if connection is good
-            System.out.println("Enter commands (/list, /read f, /upload f, /download f, /delete f, /search kw, /info f, /quit)");
+            System.out.println(
+                    "Shkruani komandat (/list, /read f, /upload f, /download f, /delete f, /search kw, /info f, /quit)");
 
             String line;
             while ((line = kb.readLine()) != null) {
@@ -60,7 +61,7 @@ public class ConsoleClient {
                     String localPath = line.substring(8).trim();
                     Path localFile = Paths.get(localPath);
                     if (!Files.exists(localFile)) {
-                        System.out.println("Local file not found: " + localFile);
+                        System.out.println("Fajlli lokal nuk u gjet: " + localFile);
                         continue;
                     }
 
@@ -87,11 +88,12 @@ public class ConsoleClient {
                     readResponse(in); // read "."
                     String fname = line.substring(10).trim();
                     Files.write(Paths.get(fname), data);
-                    System.out.println("Downloaded " + fname + " (" + size + " bytes)");
+                    System.out.println("Shkarkuar " + fname + " (" + size + " bytes)");
                 } else {
                     Util.writeln(out, line);
                     readResponse(in);
-                    if ("/quit".equalsIgnoreCase(line)) break;
+                    if ("/quit".equalsIgnoreCase(line))
+                        break;
                 }
             }
         }
@@ -101,7 +103,8 @@ public class ConsoleClient {
     private static void readResponse(BufferedReader in) throws IOException {
         String s;
         while ((s = in.readLine()) != null) {
-            if (s.equals(".")) break;
+            if (s.equals("."))
+                break;
             System.out.println(s);
         }
     }
@@ -111,19 +114,23 @@ public class ConsoleClient {
         String firstLine = null;
         String line;
         while ((line = in.readLine()) != null) {
-            if (firstLine == null) firstLine = line;
-            if (line.equals(".")) break;
+            if (firstLine == null)
+                firstLine = line;
+            if (line.equals("."))
+                break;
             System.out.println(line);
         }
         return firstLine == null ? "" : firstLine;
     }
 
     private static void drain(BufferedReader in, String first) throws IOException {
-        if (first != null) System.out.println(first);
+        if (first != null)
+            System.out.println(first);
         String s;
         while ((s = in.readLine()) != null) {
             System.out.println(s);
-            if (s.equals(".")) break;
+            if (s.equals("."))
+                break;
         }
     }
 }
