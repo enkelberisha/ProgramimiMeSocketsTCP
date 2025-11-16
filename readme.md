@@ -1,63 +1,35 @@
 ProgramimiMeSocketsTCP is a Java-based TCP client/server project.
 It implements a multi-threaded file server and a console client capable of sending commands, browsing directories, reading files, and transferring data over a TCP connection.
 
-Features
+-- FEATURES --
 
-Client
+Client:
 
 Connect as user or admin
-
 Console-based interaction
-
 List directories and files
-
 Read text files
-
 Search for keywords
-
 View file metadata
-
 Download files (Base64)
-
 Upload files (admin only)
-
 Delete files (admin only)
-
 Graceful connection and termination handling
 
-Server
+
+Server:
 
 Multi-threaded TCP server
-
 Supports up to 4 concurrent clients
-
 Admin token authorization
-
 Safe path resolution and validation
-
 Command parsing and execution
-
 Base64 file transfer support
-
 Automatic server statistics logging
-
 Per-client byte and message tracking
 
 Project Structure
-ProgramimiMeSocketsTCP/
-│
-├── client/
-│   ├── ClientMain.java        # Client entry point
-│   ├── ConsoleClient.java     # Interactive console client
-│   ├── Util.java              # Client-side utilities
-│   ├── FileIO.java            # File operations & Base64 handling
-│
-├── server/
-│   ├── ServerMain.java        # Server entry point
-│   ├── ClientHandler.java     # Handles individual client sessions
-│   ├── CommandProcessor.java  # Core command logic
-│   ├── Stats.java             # Server statistics manager
-│   ├── Util.java              # Server-side utilities
+<img width="728" height="362" alt="image" src="https://github.com/user-attachments/assets/e6aabb6a-93db-41fa-8c1f-9e0e939ee5eb" />
 
 
 ## Contributors
