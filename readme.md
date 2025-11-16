@@ -5,31 +5,48 @@ It implements a multi-threaded file server and a console client capable of sendi
 
 Client:
 
-Connect as user or admin
-Console-based interaction
-List directories and files
-Read text files
-Search for keywords
-View file metadata
-Download files (Base64)
-Upload files (admin only)
-Delete files (admin only)
-Graceful connection and termination handling
+- Connect as user or admin
+
+- Console-based interaction
+
+- List directories and files
+
+- Read text files
+
+- Search for keywords
+
+- View file metadata
+
+- Download files (Base64)
+
+- Upload files (admin only)
+
+- Delete files (admin only)
+
+- Graceful connection and termination handling
 
 
 Server:
 
-Multi-threaded TCP server
-Supports up to 4 concurrent clients
-Admin token authorization
-Safe path resolution and validation
-Command parsing and execution
-Base64 file transfer support
-Automatic server statistics logging
-Per-client byte and message tracking
+- Multi-threaded TCP server
 
-Project Structure
-<img width="728" height="362" alt="image" src="https://github.com/user-attachments/assets/e6aabb6a-93db-41fa-8c1f-9e0e939ee5eb" />
+- Supports up to 4 concurrent clients
+
+- Admin token authorization
+
+-Safe path resolution and validation
+
+-Command parsing and execution
+
+-Base64 file transfer support
+
+- Automatic server statistics logging
+
+- Per-client byte and message tracking
+
+Project Structure:
+<img width="683" height="350" alt="image" src="https://github.com/user-attachments/assets/36327036-f842-4dfe-a1f4-862e4839041f" />
+
 
 
 ## Contributors
